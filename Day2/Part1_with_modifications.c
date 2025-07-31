@@ -46,14 +46,15 @@ int main(){
     // Read the input file line by line
     while(getline(&line,&line_len,fp) != -1) {
         int max = 5;
-        int *level = malloc(max*sizeof(int));    // Create an array to store the element of the perticular level
+        int *level = malloc(max*sizeof(int));   //Dynamically create a  array to store the elements of the level
         int n = 0;
 
         char *ptr = line; //Create a pointer to traverse the elements within the line 
 
         // Read the element of the level and store in the array 
         while(sscanf(ptr,"%d",&level[n]) == 1){
-
+   
+            //Relocate the memory if the allocate memory is more then required
             if( n >= max){
                 max *= 2;
                 level = realloc(level,max*sizeof(int));
@@ -67,7 +68,7 @@ int main(){
         if (n > 0 && is_safe(level, n)) {
             total_safe++; // If the level is safe then increment the total_safe
         }
-        free(level);
+        free(level); // Deallocate the memory 
   
     }
     // int arr1[] = {7, 6, 4, 2, 1};
